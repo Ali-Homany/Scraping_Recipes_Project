@@ -1,8 +1,14 @@
 import os
+import time
 import requests
 import pandas
 from bs4 import BeautifulSoup
 from Scraper import scrape_recipe_page
+
+LINKS_FILE_PATH = "recipes_links.txt"
+MAIN_PAGE_LINK = 'https://pinchofyum.com/recipes/all'
+LAST_PAGE_INDEX = 105
+
 
 def write_to_file(filepath: str, lines: list[str]) -> None:
     '''
@@ -20,10 +26,10 @@ def save_recipes_links():
     '''
     This function scrapes all needed recipes links from the main page, saves them to a file
     '''
-    MAIN_PAGE_LINK = 'https://pinchofyum.com/recipes/all'
     recipes_links = []
-    for index in range(1, 105):
-        curr_page_url = MAIN_PAGE_LINK + f'/page/{index}'
+    for index in range(1, LAST_PAGE_INDEX + 1):
+        print(f'Index {index}')
+        curr_page_url = MAIN_PAGE_LINK + f'/page/{index}' * int(index > 1)
         soup = create_soup(curr_page_url)
         curr_recipes_links = [a['href'] for a in soup.select('section > div > article > a')]
         recipes_links.extend(curr_recipes_links)
@@ -41,12 +47,12 @@ def create_soup(url):
         - ValueError if invalid url passed
         - RuntimeError if connection failed or not successful request
     '''
-    response = requests.get(url)
     try:
+        response = requests.get(url)
         response.raise_for_status()
-    except requests.HTTPError:
-        raise ValueError('The URL is not valid or could not be reached.')
-    except requests.ConnectionError:
+    except requests.exceptions.HTTPError:
+        raise ValueError(f'The URL {url} is not valid or could not be reached.')
+    except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout):
         raise RuntimeError('Check your internet connection')
     except Exception as error:
         raise RuntimeError(f'Error occured while requesting page: {error}')
@@ -65,12 +71,15 @@ def read_n_links(n=None):
         - links (list[str]): list of first n links
     '''
 
-    with open("recipes_links.txt", "r") as file:
+    with open(LINKS_FILE_PATH, "r") as file:
         links = file.readlines()
-    if n is None:
+    if n is None or n > len(links):
         n = len(links)
-    with open("recipes_links.txt", "w") as file:
-        file.writelines(links[n:])
+    if n < len(links):
+        with open(LINKS_FILE_PATH, "w") as file:
+            file.writelines(links[n:])
+    else:
+        os.remove(LINKS_FILE_PATH)
     links = [link.strip() for link in links[:n]]
     return links
 
@@ -92,19 +101,22 @@ def scrape_n_pages(n=None):
 
     links = read_n_links(n)
     result = []
-    for link in links:
-        soup = create_soup(link)
+    for index, link in enumerate(links):
+        print(f'Page {index}: ', end='')
         try:
+            soup = create_soup(link)
             curr_page_result = scrape_recipe_page(soup=soup)
+            print('Done')
         except Exception as error:
-            raise RuntimeError(f'An error occured while scraping this page: {link}\n{error}')
+            print(f'An error occured while scraping this page: {link}\n{error}')
+            continue
         result.append(curr_page_result)
     return result
 
 
 if __name__ == "__main__":
-    if not os.path.exists('recipes_links.txt'):
+    if not os.path.exists(LINKS_FILE_PATH):
         save_recipes_links()
-    result = scrape_n_pages(1)
-    df = pandas.DataFrame(result)
-    df.to_csv('data.csv')
+    # result = scrape_n_pages(10)
+    # df = pandas.DataFrame(result)
+    # df.to_csv('data.csv', mode='a', header=False, index=False)

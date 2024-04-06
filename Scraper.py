@@ -2,8 +2,16 @@ import requests
 from bs4 import BeautifulSoup
 import os
 
-def scrape_recipe_page(soup: BeautifulSoup) -> list[list[str]]:
+def scrape_recipe_page(soup):
+    '''
+    Args:
+        soup (BeautifulSoup): contains html code of the recipe page to be scraped
+    Returns:
+        (list): all details about the recipe
+    '''
     title = get_title(soup)
+    if soup.find('header', class_='tasty-recipes-entry-header') is None or title is None or 'freezer' in title.lower() or 'instant' in title.lower():
+        raise ValueError('This is not a recipe page, I cannot scrape it')
     category = get_category(soup)
     cuisine = get_cuisine(soup)
     total_time = get_total_time(soup)
@@ -11,12 +19,16 @@ def scrape_recipe_page(soup: BeautifulSoup) -> list[list[str]]:
     steps = get_steps(soup)
     rating = get_rating(soup)
     ingredients = get_ingredients(soup)
-    list_all_type = [title,category,cuisine,total_time,nbr_of_ser,steps,rating,ingredients]
+    list_all_type = [title, category, cuisine, total_time, nbr_of_ser, steps, rating, ingredients]
     return list_all_type
 
 
 def get_title(soup):
     title_element = soup.find('h2', class_='tasty-recipes-title') 
+    if title_element is None:
+        title_element = soup.find('h1', class_='tasty-recipes-title')
+    if title_element is None:
+        return None
     title = title_element.text.strip()
     return title
 
@@ -40,9 +52,10 @@ def get_total_time(soup):
 
 
 def get_nbr_of_servings(soup):
-    number_of_servings1 = soup.find('span', {'data-amount': True})
-    number_of_servings_text = number_of_servings1.text.strip()
-    number_of_servings = float(number_of_servings_text)
+    number_of_servings = soup.find('span', {'data-amount': True})
+    if number_of_servings is None:
+        return None
+    number_of_servings = number_of_servings.text.strip()
     return number_of_servings
 
 
@@ -58,8 +71,7 @@ def get_steps(soup):
 
 def get_rating(soup):
     rating = soup.find("span", class_="average")
-    rating_text = rating.text.strip()
-    rating = float(rating_text)
+    rating = rating.text.strip()
     return rating
 
 
