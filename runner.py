@@ -14,7 +14,6 @@ DONE_PER_ITERATION = 10
 def display_progress(n, total):
     '''
     This function calculates the percentage finished, and displays the progress of the process on the console
-    
     Args:
         - n (int): number of finished items
         - total (int): number of total items to be done
@@ -42,35 +41,42 @@ def find_total():
 
 
 total = find_total()
+num_finished = 0
+curr_finished = 0
 i = 0
-stdout_output = ''
-while i < total or total == 0:
+while num_finished < total or total == 0:
     # measure time consumed
     start_time = time.time()
     result = subprocess.run(['python', SCRIPT_NAME], capture_output=True)
     total_time = time.time() - start_time
 
     # save result state
-    if result.returncode == 0:
-        stdout_output += f"Script executed successfully ({i} recipes) in {total_time:.2f} seconds.\n\n"
-    else:
-        stdout_output += f"Script encountered an error in {total_time:.2f} seconds.\n\n"
+    stdout_output = ''
 
     # add process output to save it to file
     if result.stdout:
         stdout_output += result.stdout.decode('utf-8')
         # count scraped and failed
-        i += result.stdout.decode('utf-8').count('Done')
+        curr_finished = result.stdout.decode('utf-8').count('Done')
+        num_finished += curr_finished
         total -= result.stdout.decode('utf-8').count('An error')
     elif result.stderr:
         stdout_output += result.stderr.decode('utf-8')
     stdout_output += '\n'
-    
+
+    if result.returncode == 0:
+        stdout_output = f"Script executed successfully ({curr_finished} recipes) in {total_time:.2f} seconds.\n\n" + stdout_output
+    else:
+        stdout_output = f"Script encountered an error in {total_time:.2f} seconds.\n\n" + stdout_output
+
     # if condition true, then recipes_links file didn't exist before, now it does
     if total <= 0:
-        total += find_total() + i
-    display_progress(i, total=total)
+        total += find_total() + num_finished
+    display_progress(num_finished, total=total)
 
     # write all output and error to log file
+    if not os.path.exists('./logs'):
+        os.mkdir('./logs')
     with open(OUTPUT_PATH(i), 'w') as file:
         file.write(stdout_output)
+        i += 1

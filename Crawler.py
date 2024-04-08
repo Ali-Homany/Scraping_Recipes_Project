@@ -117,6 +117,9 @@ def scrape_n_pages(n=None):
 if __name__ == "__main__":
     if not os.path.exists(LINKS_FILE_PATH):
         save_recipes_links()
-    # result = scrape_n_pages(10)
-    # df = pandas.DataFrame(result)
-    # df.to_csv('data.csv', mode='a', header=False, index=False)
+    result = scrape_n_pages(10)
+    df = pandas.DataFrame(result)
+    if os.path.exists('data.json'):
+        temp = pandas.read_json('data.json')
+        df = pandas.concat([temp, df], ignore_index=True)
+    df.to_json('data.json')
