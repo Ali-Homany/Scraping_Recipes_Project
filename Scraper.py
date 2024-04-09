@@ -19,7 +19,8 @@ def scrape_recipe_page(soup):
     steps = get_steps(soup)
     rating = get_rating(soup)
     ingredients = get_ingredients(soup)
-    list_all_type = [title, category, cuisine, total_time, nbr_of_ser, steps, rating, ingredients]
+    image_link = get_image_link(soup)
+    list_all_type = [title, category, cuisine, total_time, nbr_of_ser, steps, rating, ingredients, image_link]
     return list_all_type
 
 
@@ -70,9 +71,12 @@ def get_steps(soup):
 
 
 def get_rating(soup):
-    rating = soup.find("span", class_="average")
-    rating = rating.text.strip()
-    return rating
+    try:
+        rating = soup.find("span", class_="average")
+        rating = rating.text.strip()
+        return rating
+    except:
+        return None
 
 
 def get_ingredients(soup):
@@ -80,13 +84,16 @@ def get_ingredients(soup):
     ingredients_list = []
 
     for index, item in enumerate(ingredient_items, start=1):
-        try:
-            ingredient_type = item.find('strong').get_text(strip=True)
-        except:
-            ingredient_type = item.select('span')[-1].get_text(strip=True)
-        quantity_span = item.find('span', attrs={'data-amount': True})
-        quantity = quantity_span['data-amount'].strip() if quantity_span else None
-        unit = quantity_span.get('data-unit', '').strip() if quantity_span else None
-        ingredient_list = [ingredient_type, quantity, unit]
+        ingredient_list = ' '.join(item.stripped_strings)
         ingredients_list.append(ingredient_list)
     return ingredients_list
+
+
+def get_image_link(soup):
+    try:
+        main_image = soup.find_all('img')[1]
+        main_image_link = main_image['src']
+        return main_image_link
+    except:
+        DEFAULT_BACKGROUND_IMAGE = 'https://img.freepik.com/free-photo/wooden-planks-with-blurred-restaurant-background_1253-56.jpg'
+        return DEFAULT_BACKGROUND_IMAGE
