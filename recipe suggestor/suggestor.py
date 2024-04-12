@@ -28,6 +28,5 @@ def suggest_recipes(df: pandas.DataFrame, cuisine, category, available_ingredien
         temp = temp[temp['cuisine'] == cuisine]
     temp.loc[:,'score'] = temp['ingredients'].apply(lambda row: count_common(row, available_ingredients))
     temp = temp.sort_values(by=['score','rating'], ascending=False)
-    temp.to_csv('temp.csv')
     result = temp.iloc[:min(n, len(temp)), 0]
     return result
