@@ -1,6 +1,5 @@
 import pandas as pd
 import webbrowser
-import Image_Processor
 import random
 
 
@@ -21,9 +20,7 @@ def create_ingredients(recipe):
 
 
 def build_recipe_page(recipe):
-    recipe_name = recipe['name']
-    recipe_image_bytes = Image_Processor.scrape_image_as_string(r'{}'.format(recipe['image_link']).replace('\\/\\/', '//').replace('\\/', '/'))
-    image_data_url = f"data:image/jpeg;base64,{recipe_image_bytes}"
+    recipe_name = recipe['title']
     html_code = """
     <!DOCTYPE html>
     <html lang="en">
@@ -298,7 +295,7 @@ def build_recipe_page(recipe):
             margin-bottom: 30px;
         }
         #bg{
-        """ + f"background-image: linear-gradient(to top, rgb(0, 0, 0) 5% , rgba(255, 255, 255, 0)), url({image_data_url});" + """
+        """ + f"background-image: linear-gradient(to top, rgb(0, 0, 0) 5% , rgba(255, 255, 255, 0)), url({recipe['image_link']});" + """
             min-height: 100vh;
             height:fit-content;
             background-attachment: fixed;

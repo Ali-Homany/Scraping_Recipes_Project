@@ -63,12 +63,14 @@ class ChefBot:
         with open(PATHS.CURR_INDEX_FILE_PATH, 'w') as file:
             file.write(str(index))
 
-        msg, photo_name = get_ith_recipe_message(index=index)
+        msg, photo_location = get_ith_recipe_message(index=index)
         subscribers = self.get_subscribers_ids()
         for subscriber_id in subscribers:
-            if photo_name:
-                with open(photo_name, 'rb') as photo:
+            if os.path.exists(photo_location):
+                with open(photo_location, 'rb') as photo:
                     self.bot.send_photo(chat_id=subscriber_id, photo=photo)
+            else:
+                self.bot.send_message(chat_id=subscriber_id, text=photo_location)
             self.bot.send_message(chat_id=subscriber_id, text=msg)
 
     def schedule_daily_message(self):

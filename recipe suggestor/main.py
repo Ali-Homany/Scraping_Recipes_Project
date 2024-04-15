@@ -1,6 +1,7 @@
 import pandas
 import warnings
 import os
+import time
 from suggestor import suggest_recipes
 from displayer import display_recipe
 
@@ -37,7 +38,10 @@ def get_string_from_user(msg):
     Returns:
         (str) user input
     '''
-    return input(msg)
+    response = input(msg)
+    if response == '':
+        return get_string_from_user('')
+    return response
 
 
 def get_user_choice(title, all_choices, allow_any=True):
@@ -78,23 +82,26 @@ def get_available_ingredients_from_user():
 
 
 if __name__ == '__main__':
-    warnings.filterwarnings('ignore')
-    df = pandas.read_json('data.json')
-    df.rename(columns={0:'name', 1:'category', 2:'cuisine', 5:'steps', 6:'rating', 7:'ingredients', 8:'image_link'}, inplace=True)
+    try:
+        warnings.filterwarnings('ignore')
+        df = pandas.read_json('./cleaned_data.json')
 
-    available_categories = df['category'].unique()
-    chosen_category = get_user_choice('category', available_categories)
-    if chosen_category is not None:
-        df = df[df['category'] == chosen_category]
+        available_categories = df['category'].unique()
+        chosen_category = get_user_choice('category', available_categories)
+        if chosen_category is not None:
+            df = df[df['category'] == chosen_category]
 
-    available_cuisines = df['cuisine'].unique()
-    chosen_cuisine = get_user_choice('cuisine', available_cuisines)
-    suggestions = suggest_recipes(
-                df=df,
-                cuisine=chosen_cuisine,
-                category=chosen_category,
-                available_ingredients=get_available_ingredients_from_user()
-                )
-    chosen_recipe = get_user_choice('best recipe', suggestions, allow_any=False)
-    df = df[df['name'] == chosen_recipe]
-    display_recipe(df.iloc[0])
+        available_cuisines = df['cuisine'].unique()
+        chosen_cuisine = get_user_choice('cuisine', available_cuisines)
+        suggestions = suggest_recipes(
+                    df=df,
+                    cuisine=chosen_cuisine,
+                    category=chosen_category,
+                    available_ingredients=get_available_ingredients_from_user()
+                    )
+        chosen_recipe = get_user_choice('best recipe', suggestions, allow_any=False)
+        df = df[df['title'] == chosen_recipe]
+        display_recipe(df.iloc[0])
+    except Exception as e:
+        print(f'An error occured while running: {e}')
+    time.sleep(10)
