@@ -1,0 +1,22 @@
+#logo {
+    border-radius: 50%;
+    width: 80%;
+    translate: -20px;
+}
+nav {
+    max-width: 25vw;
+}
+article, details {
+    width: fit-content;
+}
+code.python {
+    width: 60vw;
+    overflow-x: hidden;
+}
+#section-intro code.hljs {
+    width: 65vw;
+    overflow-x: hidden;
+}
+code.python * {
+    font-size: 20px !important;
+}

@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>Recipe Suggestor - Displayer Documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<link rel="stylesheet" href="../../extra_styling.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>displayer</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import pandas as pd
+import webbrowser
+import random
+
+
+def create_steps(recipe):
+    &#39;&#39;&#39;
+    Returns:
+        - (list) list of steps of the given recipe
+    &#39;&#39;&#39;
+    result = &#39;&lt;ol&gt;&#39;
+    for step in recipe[&#39;steps&#39;]:
+        result += f&#39;&lt;li&gt;{step}&lt;/li&gt;&#39;
+    result += &#39;&lt;/ol&gt;&#39;
+    return result
+
+
+def create_ingredients(recipe):
+    &#39;&#39;&#39;
+    Returns:
+        - (list) list of ingredients of the given recipe
+    &#39;&#39;&#39;
+    result = &#39;&lt;ul&gt;&#39;
+    for ingredient in recipe[&#39;ingredients&#39;]:
+        result += f&#39;&lt;li&gt;{ingredient}&lt;/li&gt;&#39;
+    result += &#39;&lt;/ul&gt;&#39;
+    return result
+
+
+def build_recipe_page(recipe):
+    recipe_name = recipe[&#39;title&#39;]
+    html_code = &#34;&#34;&#34;
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang=&#34;en&#34;&gt;
+    &lt;head&gt;
+      &lt;meta charset=&#34;UTF-8&#34;&gt;
+      &lt;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;IE=edge&#34;&gt;
+      &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;
+      &lt;style&gt;
+            @import url(&#39;https://fonts.googleapis.com/css2?family=Finger+Paint&amp;family=Dancing+Script:wght@700&amp;family=Solway:wght@300;400;500;700;800&amp;family=Leckerli+One&amp;family=Tangerine:wght@400;700&amp;family=Work+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap&#39;);
+            /* 
+            font-family: &#39;Finger Paint&#39;, sans-serif; for some buttons, a bit cute &amp; funny
+            font-family: &#39;Solway&#39;, serif; for lists, nice &amp; clean
+            font-family: &#39;Dancing Script&#39;, cursive; handwriting-like font for the slogan
+            font-family: &#39;Work Sans&#39;, sans-serif; for most stuff
+            font-family: &#39;Leckerli One&#39;, cursive; for recipe name in recipe page
+            */
+
+
+
+            /* colors, fonts.. all common stuff btw the 3 pages */
+            :root{
+            --gold: #B68D13;
+            --brown: #3B2200;
+            --grey: #D6D6D6;
+            --pink: #FF86DA;
+            --orange: #FFC720;
+            }
+
+
+            /* we can use any of these colors in any other file, this is an example:
+            .selected{
+            color: var(--gold);
+            }
+            */
+
+
+            /* some common styling */
+            *{
+            margin:0;
+            padding:0;
+            font-family: &#39;Work Sans&#39;, sans-serif;
+            }
+            a{
+            color: inherit;
+            font-size: inherit;
+            }
+
+
+            &lt;/style&gt;
+            &lt;style&gt;
+            body {
+                background-image: linear-gradient(to bottom, rgba(182, 141, 19), rgba(255, 255, 255, 0));
+                text-align: center;
+                margin: 0;
+            }
+
+
+        .recipe-name{
+            position: sticky;
+            top: 0;
+            display: flex;
+            width: 100%;
+            justify-content:space-around;
+            align-items: center;
+            background-color: var(--gold);
+            margin-top: 0;
+            margin-bottom: 5px;
+            height:50px;
+            color: white;
+            font-family: &#39;Leckerli One&#39;, cursive;
+            font-weight: 400;
+            text-transform: capitalize;
+            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.553);
+        }
+        .recipe-name h2{
+            font-weight: inherit;
+        }
+        .recipe-name svg{
+            height: 50px;
+            aspect-ratio: 1/1;
+            fill: white;
+            translate: 0% 20%;
+        }
+
+        .step-container {
+            display: flex;
+            flex-direction: column; 
+            margin:20px 20px;
+
+        }
+
+        /* step number */
+        .step-box {
+            background-color:var(--brown);
+            padding: 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            width:fit-content;
+            color: white;
+            font-family: &#39;Finger Paint&#39;, sans-serif;
+        }
+
+        /* details tb3 recipe */
+        .details-box {
+            background-color:rgba(255, 255, 255, 0.5); 
+            border: solid var(--brown);
+            color: var(--brown);
+            font-family: &#39;Work Sans&#39;, sans-serif;
+            padding: 15px;
+            border-radius: 20px;
+            height:100px;
+        }
+
+        /* previous home next container */
+        .navigation-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        /* previous next */
+        .navigation-box {
+            padding: 10px;
+            margin: 0 10px;
+            border-radius:50%; 
+            height:40px; 
+            width:40px;
+        }
+
+        /* svg style for prev next */
+        .navigation-box svg{
+            width: 40px;
+            height: 40px;
+            fill:white;
+            border: solid var(--brown);
+            border-radius: 50%;
+            filter: drop-shadow(2px 2px 10px rgba(255, 255, 255, 0,5));
+        }
+
+        /* division tb3 l home */
+        #home{
+            height:20px;
+            width:20px;
+            background-color:var(--brown);
+        }
+
+        #home svg{
+            width: 20px;
+            height: 20px;
+            fill:white;
+            border: none;
+        }
+
+        /* l container tb3 l edit w delete */
+        .additional-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 10px ;
+        }
+
+        /* edit delete buttons */
+        .additional-button {
+            margin: 0 10px;
+            padding: 5px;
+            background-color: none;
+        }
+        /* style lal svg  */
+        .additional-button svg{
+            height: 20px;
+            width:20px;
+            fill: white;
+        }
+
+
+        .top{
+            display: flex;
+            flex-direction: row;
+            justify-content:left;
+            margin-bottom: 5px;
+            margin-left: 20px;
+            width: auto;
+        }
+
+
+        .ingredients-box {
+            background-color: var(--brown); 
+            padding: 8px;
+            border-radius: 20px;
+            width: 100px; 
+            font-family: &#39;Finger Paint&#39;, sans-serif;
+            text-transform: capitalize;
+            color:white;
+        }
+
+        /* margin right is to center manuallly the box based on ingredients container */
+        .big-container{
+            display: flex;
+            justify-content: left;
+            margin-right: 50px;
+            margin-left: 20px;
+        }
+
+
+        /* contains list of ingredients m3 l share w copy buttons */
+        .ingredients-container{
+            background-color:white;
+            border: solid var(--brown);
+            border-radius: 15px;
+            width:500px;
+        }
+
+        .list-container {
+            text-align: center;
+            font-family: &#39;Solway&#39;, serif;
+            font-weight: bold;
+            color:var(--brown);
+            margin: 30px ;
+        }
+
+        ul{
+            width: fit-content;
+        }
+
+        .list-item {
+            margin-bottom: 15px;
+        }
+
+        /* container lal copy w share buttons */
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* style buttons */
+        .icon {
+            width:50px;
+            margin: 10px 10px;
+            fill:var(--brown);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* la kl l buttons */
+        button{
+            border:none;
+            outline:none;
+            background-color: transparent;
+        }
+
+        #prevStep{
+            visibility: hidden;
+        }
+      &lt;/style&gt;
+      &lt;style&gt;
+        .details-box{
+            height: fit-content;
+            margin-left: 60px;
+            margin-right: 60px;
+        }
+        ol, ul{
+            margin-left: 30px;
+            width: fit-content;
+            text-align:left;
+            color: rgba(41, 24, 0, 1);
+            font-weight: 600;
+        }
+        .big-container{
+            margin-right:0;
+            margin-bottom: 30px;
+        }
+        #bg{
+        &#34;&#34;&#34; + f&#34;background-image: linear-gradient(to top, rgb(0, 0, 0) 5% , rgba(255, 255, 255, 0)), url({recipe[&#39;image_link&#39;]});&#34; + &#34;&#34;&#34;
+            min-height: 100vh;
+            height:fit-content;
+            background-attachment: fixed;
+            background-size:cover;
+            background-position:center;
+            text-align: left;
+            padding-bottom: 20px;
+            margin: 0;
+        }
+        .recipe-name svg{
+            transform: translate(0, -4px);
+        }
+        html{
+            min-height:100vh;
+            height: fit-content;
+            padding: 0;
+            width:100%;
+            background-color:white;
+        }
+        body{
+            min-height:100vh;
+            height: fit-content;
+            width:100%;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+      &lt;/style&gt;
+      &lt;title&gt;Recipe&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;div id=&#34;bg&#34;&gt;
+      &lt;!-- header of the page --&gt;
+      &lt;div class=&#34;recipe-name&#34;&gt;
+      &lt;svg version=&#34;1.1&#34; id=&#34;Layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; x=&#34;0px&#34; y=&#34;0px&#34;
+      viewBox=&#34;0 0 122.7 131.2&#34; style=&#34;enable-background:new 0 0 122.7 131.2;&#34; xml:space=&#34;preserve&#34;&gt;
+     &lt;path d=&#34;M46.1,1.5c-5.3,2.1-9.6,6.3-10.8,10.6c-1,3.3-1.8,4.3-3.6,4.3c-1.2,0-4.5,1.4-7.2,3.1c-5.8,3.6-10.5,12.1-10.5,18.8
+     c0,7.8,6,14.6,13.1,15c5,0.2,4.5-2.5-0.8-4.3c-5.6-1.9-8-5-8-10.3c0-7.8,5.8-16,12.7-18c3.2-0.9,3.5-0.8,4.9,2.6
+     c2,4.8,6.9,8.6,8.9,6.9c1.3-1.1,1.1-1.6-1.2-3.4C34,18.6,38.8,6.7,52.7,4.1c4.9-0.9,11.9,1,15.7,4.2l3,2.6l-2.5,4.4
+     c-2.7,4.7-2.8,9.2-0.2,9.2c0.9,0,1.8-1.5,2.3-3.5C73.5,8.1,93.8,6,102,17.7c1.7,2.3,2.6,5.4,2.9,9.7c0.4,5.5,0.1,6.9-2.4,10.6
+     c-3.3,4.9-8.2,7.4-14.6,7.4h-4.4l2.1-2.8c2.7-3.3,4.8-9.7,4-11.7c-1.2-3.1-3.5-1.6-4.3,2.7c-0.9,5.8-6.2,11.8-10.5,11.8
+     c-2.8,0-3.1-0.3-2.4-2.5c2.1-6.7-0.6-8.2-3.9-1.9c-1.8,3.6-2.7,4.4-5.4,4.4c-2.1,0-3.8-0.9-4.9-2.7c-1.7-2.6-2.3-10.2-1-12.3
+     c0.3-0.6-0.1-1.4-1.1-1.8c-1.1-0.3-2.3,0-2.8,0.9c-1.3,2-1.2,9.9,0.1,13.2c0.9,2.4,0.8,2.8-1.1,2.8c-1.4,0-2.9-1.5-4.3-4.3
+     c-1.2-2.4-2.7-4.3-3.2-4.3c-1.9,0-2.3,2.3-0.8,5.3c1.4,2.9,1.4,3.2-0.3,3.6c-2.5,0.6-9.4-6.3-10.6-10.6C32.9,33.4,31.8,32,31,32
+     c-2.9,0-2.1,4.5,1.7,10.2l3.9,5.7l-2.3,2.4c-5.2,5.5-4.6,14.4,1.1,19.2c2.8,2.3,3.2,3.4,3.2,8c0,2.9,0.5,5.7,1.2,6.1
+     c0.6,0.3,2.5-0.5,4.1-2.1l2.9-2.8l2.8,2.8c3.5,3.6,5.2,2.6,5.2-3.3v-4.8l18-0.2c15.1-0.3,17.9-0.5,17.9-1.9s-2.8-1.6-17.9-1.9
+     l-18-0.2v-3.8v-3.8l18-0.2c15.1-0.3,17.9-0.5,17.9-1.9c0-1.4-3.5-1.6-25.8-1.6H39.1l-0.5,4.7c-0.4,3.8-0.8,4.4-1.7,3.2
+     c-2.3-2.8-2.8-6.4-1.4-9.7c2.4-5.9,4.7-6.3,32.3-6.3c22,0,25.5-0.3,29.3-2C114,39.9,113.3,15.8,96,7.7c-5.3-2.5-13.5-2.6-17.7-0.4
+     c-3,1.5-3.2,1.5-5.9-1.2C70.9,4.6,68,2.7,66,1.8C61.8,0.1,50.2-0.1,46.1,1.5z M50.7,66c1.1,9.9,0.5,12-2.3,9.2
+     c-1.1-1.1-1.8-1.1-3.4,0c-2,1.3-2.1,1-2.1-6.2v-7.5h3.6C50.1,61.5,50.3,61.7,50.7,66z&#34;/&gt;
+    &lt;/svg&gt;
+          &#34;&#34;&#34; + f&#34;&lt;h2&gt;{recipe_name}&lt;/h2&gt;&#34; + &#34;&#34;&#34;
+          &lt;svg version=&#34;1.1&#34; id=&#34;Layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; x=&#34;0px&#34; y=&#34;0px&#34;
+        viewBox=&#34;0 0 122.7 131.2&#34; style=&#34;enable-background:new 0 0 122.7 131.2;&#34; xml:space=&#34;preserve&#34;&gt;
+       &lt;path d=&#34;M46.1,1.5c-5.3,2.1-9.6,6.3-10.8,10.6c-1,3.3-1.8,4.3-3.6,4.3c-1.2,0-4.5,1.4-7.2,3.1c-5.8,3.6-10.5,12.1-10.5,18.8
+       c0,7.8,6,14.6,13.1,15c5,0.2,4.5-2.5-0.8-4.3c-5.6-1.9-8-5-8-10.3c0-7.8,5.8-16,12.7-18c3.2-0.9,3.5-0.8,4.9,2.6
+       c2,4.8,6.9,8.6,8.9,6.9c1.3-1.1,1.1-1.6-1.2-3.4C34,18.6,38.8,6.7,52.7,4.1c4.9-0.9,11.9,1,15.7,4.2l3,2.6l-2.5,4.4
+       c-2.7,4.7-2.8,9.2-0.2,9.2c0.9,0,1.8-1.5,2.3-3.5C73.5,8.1,93.8,6,102,17.7c1.7,2.3,2.6,5.4,2.9,9.7c0.4,5.5,0.1,6.9-2.4,10.6
+       c-3.3,4.9-8.2,7.4-14.6,7.4h-4.4l2.1-2.8c2.7-3.3,4.8-9.7,4-11.7c-1.2-3.1-3.5-1.6-4.3,2.7c-0.9,5.8-6.2,11.8-10.5,11.8
+       c-2.8,0-3.1-0.3-2.4-2.5c2.1-6.7-0.6-8.2-3.9-1.9c-1.8,3.6-2.7,4.4-5.4,4.4c-2.1,0-3.8-0.9-4.9-2.7c-1.7-2.6-2.3-10.2-1-12.3
+       c0.3-0.6-0.1-1.4-1.1-1.8c-1.1-0.3-2.3,0-2.8,0.9c-1.3,2-1.2,9.9,0.1,13.2c0.9,2.4,0.8,2.8-1.1,2.8c-1.4,0-2.9-1.5-4.3-4.3
+       c-1.2-2.4-2.7-4.3-3.2-4.3c-1.9,0-2.3,2.3-0.8,5.3c1.4,2.9,1.4,3.2-0.3,3.6c-2.5,0.6-9.4-6.3-10.6-10.6C32.9,33.4,31.8,32,31,32
+       c-2.9,0-2.1,4.5,1.7,10.2l3.9,5.7l-2.3,2.4c-5.2,5.5-4.6,14.4,1.1,19.2c2.8,2.3,3.2,3.4,3.2,8c0,2.9,0.5,5.7,1.2,6.1
+       c0.6,0.3,2.5-0.5,4.1-2.1l2.9-2.8l2.8,2.8c3.5,3.6,5.2,2.6,5.2-3.3v-4.8l18-0.2c15.1-0.3,17.9-0.5,17.9-1.9s-2.8-1.6-17.9-1.9
+       l-18-0.2v-3.8v-3.8l18-0.2c15.1-0.3,17.9-0.5,17.9-1.9c0-1.4-3.5-1.6-25.8-1.6H39.1l-0.5,4.7c-0.4,3.8-0.8,4.4-1.7,3.2
+       c-2.3-2.8-2.8-6.4-1.4-9.7c2.4-5.9,4.7-6.3,32.3-6.3c22,0,25.5-0.3,29.3-2C114,39.9,113.3,15.8,96,7.7c-5.3-2.5-13.5-2.6-17.7-0.4
+       c-3,1.5-3.2,1.5-5.9-1.2C70.9,4.6,68,2.7,66,1.8C61.8,0.1,50.2-0.1,46.1,1.5z M50.7,66c1.1,9.9,0.5,12-2.3,9.2
+       c-1.1-1.1-1.8-1.1-3.4,0c-2,1.3-2.1,1-2.1-6.2v-7.5h3.6C50.1,61.5,50.3,61.7,50.7,66z&#34;/&gt;
+      &lt;/svg&gt;
+      &lt;/div&gt;
+    
+      &lt;!--step number m3 step details--&gt;
+      &lt;div class=&#34;step-container&#34;&gt;
+          &lt;div class=&#34;step-box&#34;&gt;Steps&lt;/div&gt;
+          &#34;&#34;&#34; + f&#39;&lt;div class=&#34;details-box&#34;&gt;{create_steps(recipe)}&lt;/div&gt;&#39; + &#34;&#34;&#34;
+      &lt;/div&gt;
+    
+    
+      &lt;div class=&#34;top&#34;&gt; &lt;!-- contains ingredients title --&gt;
+        &lt;div class=&#34;ingredients-box&#34;&gt;Ingredients&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&#34;step-container&#34;&gt; &lt;!-- contains ingredients-list w edit delete share copy buttons--&gt;
+        &lt;div class=&#34;details-box&#34;&gt; &lt;!--contains list w copy share buttons--&gt;
+          
+            &#34;&#34;&#34; + f&#34;{create_ingredients(recipe)}&#34; + &#34;&#34;&#34;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;  
+    &lt;/body&gt;
+    &lt;/html&gt;
+    &#34;&#34;&#34;
+    with open(&#39;open_recipe.html&#39;, &#39;w&#39;, encoding=&#39;utf-8&#39;) as file:
+        file.write(html_code)
+    webbrowser.open(&#39;open_recipe.html&#39;)
+
+
+def display_recipe(recipe: pd.Series):
+    &#39;&#39;&#39;
+    This function displays a recipe as html page
+    Args:
+        - recipe (pandas.Series): recipe to be displayed to user
+    &#39;&#39;&#39;
+    build_recipe_page(recipe)
+
+
+if __name__ == &#39;__main__&#39;:
+    df = pd.read_json(&#39;data.json&#39;)
+    display_recipe(df.iloc[random.randint(0, 13), :])</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="displayer.build_recipe_page"><code class="name flex">
+<span>def <span class="ident">build_recipe_page</span></span>(<span>recipe)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_recipe_page(recipe):
+    recipe_name = recipe[&#39;title&#39;]
+    html_code = &#34;&#34;&#34;
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang=&#34;en&#34;&gt;
+    &lt;head&gt;
+      &lt;meta charset=&#34;UTF-8&#34;&gt;
+      &lt;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;IE=edge&#34;&gt;
+      &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;
+      &lt;style&gt;
+            @import url(&#39;https://fonts.googleapis.com/css2?family=Finger+Paint&amp;family=Dancing+Script:wght@700&amp;family=Solway:wght@300;400;500;700;800&amp;family=Leckerli+One&amp;family=Tangerine:wght@400;700&amp;family=Work+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap&#39;);
+            /* 
+            font-family: &#39;Finger Paint&#39;, sans-serif; for some buttons, a bit cute &amp; funny
+            font-family: &#39;Solway&#39;, serif; for lists, nice &amp; clean
+            font-family: &#39;Dancing Script&#39;, cursive; handwriting-like font for the slogan
+            font-family: &#39;Work Sans&#39;, sans-serif; for most stuff
+            font-family: &#39;Leckerli One&#39;, cursive; for recipe name in recipe page
+            */
+
+
+
+            /* colors, fonts.. all common stuff btw the 3 pages */
+            :root{
+            --gold: #B68D13;
+            --brown: #3B2200;
+            --grey: #D6D6D6;
+            --pink: #FF86DA;
+            --orange: #FFC720;
+            }
+
+
+            /* we can use any of these colors in any other file, this is an example:
+            .selected{
+            color: var(--gold);
+            }
+            */
+
+
+            /* some common styling */
+            *{
+            margin:0;
+            padding:0;
+            font-family: &#39;Work Sans&#39;, sans-serif;
+            }
+            a{
+            color: inherit;
+            font-size: inherit;
+            }
+
+
+            &lt;/style&gt;
+            &lt;style&gt;
+            body {
+                background-image: linear-gradient(to bottom, rgba(182, 141, 19), rgba(255, 255, 255, 0));
+                text-align: center;
+                margin: 0;
+            }
+
+
+        .recipe-name{
+            position: sticky;
+            top: 0;
+            display: flex;
+            width: 100%;
+            justify-content:space-around;
+            align-items: center;
+            background-color: var(--gold);
+            margin-top: 0;
+            margin-bottom: 5px;
+            height:50px;
+            color: white;
+            font-family: &#39;Leckerli One&#39;, cursive;
+            font-weight: 400;
+            text-transform: capitalize;
+            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.553);
+        }
+        .recipe-name h2{
+            font-weight: inherit;
+        }
+        .recipe-name svg{
+            height: 50px;
+            aspect-ratio: 1/1;
+            fill: white;
+            translate: 0% 20%;
+        }
+
+        .step-container {
+            display: flex;
+            flex-direction: column; 
+            margin:20px 20px;
+
+        }
+
+        /* step number */
+        .step-box {
+            background-color:var(--brown);
+            padding: 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            width:fit-content;
+            color: white;
+            font-family: &#39;Finger Paint&#39;, sans-serif;
+        }
+
+        /* details tb3 recipe */
+        .details-box {
+            background-color:rgba(255, 255, 255, 0.5); 
+            border: solid var(--brown);
+            color: var(--brown);
+            font-family: &#39;Work Sans&#39;, sans-serif;
+            padding: 15px;
+            border-radius: 20px;
+            height:100px;
+        }
+
+        /* previous home next container */
+        .navigation-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        /* previous next */
+        .navigation-box {
+            padding: 10px;
+            margin: 0 10px;
+            border-radius:50%; 
+            height:40px; 
+            width:40px;
+        }
+
+        /* svg style for prev next */
+        .navigation-box svg{
+            width: 40px;
+            height: 40px;
+            fill:white;
+            border: solid var(--brown);
+            border-radius: 50%;
+            filter: drop-shadow(2px 2px 10px rgba(255, 255, 255, 0,5));
+        }
+
+        /* division tb3 l home */
+        #home{
+            height:20px;
+            width:20px;
+            background-color:var(--brown);
+        }
+
+        #home svg{
+            width: 20px;
+            height: 20px;
+            fill:white;
+            border: none;
+        }
+
+        /* l container tb3 l edit w delete */
+        .additional-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 10px ;
+        }
+
+        /* edit delete buttons */
+        .additional-button {
+            margin: 0 10px;
+            padding: 5px;
+            background-color: none;
+        }
+        /* style lal svg  */
+        .additional-button svg{
+            height: 20px;
+            width:20px;
+            fill: white;
+        }
+
+
+        .top{
+            display: flex;
+            flex-direction: row;
+            justify-content:left;
+            margin-bottom: 5px;
+            margin-left: 20px;
+            width: auto;
+        }
+
+
+        .ingredients-box {
+            background-color: var(--brown); 
+            padding: 8px;
+            border-radius: 20px;
+            width: 100px; 
+            font-family: &#39;Finger Paint&#39;, sans-serif;
+            text-transform: capitalize;
+            color:white;
+        }
+
+        /* margin right is to center manuallly the box based on ingredients container */
+        .big-container{
+            display: flex;
+            justify-content: left;
+            margin-right: 50px;
+            margin-left: 20px;
+        }
+
+
+        /* contains list of ingredients m3 l share w copy buttons */
+        .ingredients-container{
+            background-color:white;
+            border: solid var(--brown);
+            border-radius: 15px;
+            width:500px;
+        }
+
+        .list-container {
+            text-align: center;
+            font-family: &#39;Solway&#39;, serif;
+            font-weight: bold;
+            color:var(--brown);
+            margin: 30px ;
+        }
+
+        ul{
+            width: fit-content;
+        }
+
+        .list-item {
+            margin-bottom: 15px;
+        }
+
+        /* container lal copy w share buttons */
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* style buttons */
+        .icon {
+            width:50px;
+            margin: 10px 10px;
+            fill:var(--brown);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* la kl l buttons */
+        button{
+            border:none;
+            outline:none;
+            background-color: transparent;
+        }
+
+        #prevStep{
+            visibility: hidden;
+        }
+      &lt;/style&gt;
+      &lt;style&gt;
+        .details-box{
+            height: fit-content;
+            margin-left: 60px;
+            margin-right: 60px;
+        }
+        ol, ul{
+            margin-left: 30px;
+            width: fit-content;
+            text-align:left;
+            color: rgba(41, 24, 0, 1);
+            font-weight: 600;
+        }
+        .big-container{
+            margin-right:0;
+            margin-bottom: 30px;
+        }
+        #bg{
+        &#34;&#34;&#34; + f&#34;background-image: linear-gradient(to top, rgb(0, 0, 0) 5% , rgba(255, 255, 255, 0)), url({recipe[&#39;image_link&#39;]});&#34; + &#34;&#34;&#34;
+            min-height: 100vh;
+            height:fit-content;
+            background-attachment: fixed;
+            background-size:cover;
+            background-position:center;
+            text-align: left;
+            padding-bottom: 20px;
+            margin: 0;
+        }
+        .recipe-name svg{
+            transform: translate(0, -4px);
+        }
+        html{
+            min-height:100vh;
+            height: fit-content;
+            padding: 0;
+            width:100%;
+            background-color:white;
+        }
+        body{
+            min-height:100vh;
+            height: fit-content;
+            width:100%;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+      &lt;/style&gt;
+      &lt;title&gt;Recipe&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;div id=&#34;bg&#34;&gt;
+      &lt;!-- header of the page --&gt;
+      &lt;div class=&#34;recipe-name&#34;&gt;
+      &lt;svg version=&#34;1.1&#34; id=&#34;Layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; x=&#34;0px&#34; y=&#34;0px&#34;
+      viewBox=&#34;0 0 122.7 131.2&#34; style=&#34;enable-background:new 0 0 122.7 131.2;&#34; xml:space=&#34;preserve&#34;&gt;
+     &lt;path d=&#34;M46.1,1.5c-5.3,2.1-9.6,6.3-10.8,10.6c-1,3.3-1.8,4.3-3.6,4.3c-1.2,0-4.5,1.4-7.2,3.1c-5.8,3.6-10.5,12.1-10.5,18.8
+     c0,7.8,6,14.6,13.1,15c5,0.2,4.5-2.5-0.8-4.3c-5.6-1.9-8-5-8-10.3c0-7.8,5.8-16,12.7-18c3.2-0.9,3.5-0.8,4.9,2.6
+     c2,4.8,6.9,8.6,8.9,6.9c1.3-1.1,1.1-1.6-1.2-3.4C34,18.6,38.8,6.7,52.7,4.1c4.9-0.9,11.9,1,15.7,4.2l3,2.6l-2.5,4.4
+     c-2.7,4.7-2.8,9.2-0.2,9.2c0.9,0,1.8-1.5,2.3-3.5C73.5,8.1,93.8,6,102,17.7c1.7,2.3,2.6,5.4,2.9,9.7c0.4,5.5,0.1,6.9-2.4,10.6
+     c-3.3,4.9-8.2,7.4-14.6,7.4h-4.4l2.1-2.8c2.7-3.3,4.8-9.7,4-11.7c-1.2-3.1-3.5-1.6-4.3,2.7c-0.9,5.8-6.2,11.8-10.5,11.8
+     c-2.8,0-3.1-0.3-2.4-2.5c2.1-6.7-0.6-8.2-3.9-1.9c-1.8,3.6-2.7,4.4-5.4,4.4c-2.1,0-3.8-0.9-4.9-2.7c-1.7-2.6-2.3-10.2-1-12.3
+     c0.3-0.6-0.1-1.4-1.1-1.8c-1.1-0.3-2.3,0-2.8,0.9c-1.3,2-1.2,9.9,0.1,13.2c0.9,2.4,0.8,2.8-1.1,2.8c-1.4,0-2.9-1.5-4.3-4.3
+     c-1.2-2.4-2.7-4.3-3.2-4.3c-1.9,0-2.3,2.3-0.8,5.3c1.4,2.9,1.4,3.2-0.3,3.6c-2.5,0.6-9.4-6.3-10.6-10.6C32.9,33.4,31.8,32,31,32
+     c-2.9,0-2.1,4.5,1.7,10.2l3.9,5.7l-2.3,2.4c-5.2,5.5-4.6,14.4,1.1,19.2c2.8,2.3,3.2,3.4,3.2,8c0,2.9,0.5,5.7,1.2,6.1
+     c0.6,0.3,2.5-0.5,4.1-2.1l2.9-2.8l2.8,2.8c3.5,3.6,5.2,2.6,5.2-3.3v-4.8l18-0.2c15.1-0.3,17.9-0.5,17.9-1.9s-2.8-1.6-17.9-1.9
+     l-18-0.2v-3.8v-3.8l18-0.2c15.1-0.3,17.9-0.5,17.9-1.9c0-1.4-3.5-1.6-25.8-1.6H39.1l-0.5,4.7c-0.4,3.8-0.8,4.4-1.7,3.2
+     c-2.3-2.8-2.8-6.4-1.4-9.7c2.4-5.9,4.7-6.3,32.3-6.3c22,0,25.5-0.3,29.3-2C114,39.9,113.3,15.8,96,7.7c-5.3-2.5-13.5-2.6-17.7-0.4
+     c-3,1.5-3.2,1.5-5.9-1.2C70.9,4.6,68,2.7,66,1.8C61.8,0.1,50.2-0.1,46.1,1.5z M50.7,66c1.1,9.9,0.5,12-2.3,9.2
+     c-1.1-1.1-1.8-1.1-3.4,0c-2,1.3-2.1,1-2.1-6.2v-7.5h3.6C50.1,61.5,50.3,61.7,50.7,66z&#34;/&gt;
+    &lt;/svg&gt;
+          &#34;&#34;&#34; + f&#34;&lt;h2&gt;{recipe_name}&lt;/h2&gt;&#34; + &#34;&#34;&#34;
+          &lt;svg version=&#34;1.1&#34; id=&#34;Layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; x=&#34;0px&#34; y=&#34;0px&#34;
+        viewBox=&#34;0 0 122.7 131.2&#34; style=&#34;enable-background:new 0 0 122.7 131.2;&#34; xml:space=&#34;preserve&#34;&gt;
+       &lt;path d=&#34;M46.1,1.5c-5.3,2.1-9.6,6.3-10.8,10.6c-1,3.3-1.8,4.3-3.6,4.3c-1.2,0-4.5,1.4-7.2,3.1c-5.8,3.6-10.5,12.1-10.5,18.8
+       c0,7.8,6,14.6,13.1,15c5,0.2,4.5-2.5-0.8-4.3c-5.6-1.9-8-5-8-10.3c0-7.8,5.8-16,12.7-18c3.2-0.9,3.5-0.8,4.9,2.6
+       c2,4.8,6.9,8.6,8.9,6.9c1.3-1.1,1.1-1.6-1.2-3.4C34,18.6,38.8,6.7,52.7,4.1c4.9-0.9,11.9,1,15.7,4.2l3,2.6l-2.5,4.4
+       c-2.7,4.7-2.8,9.2-0.2,9.2c0.9,0,1.8-1.5,2.3-3.5C73.5,8.1,93.8,6,102,17.7c1.7,2.3,2.6,5.4,2.9,9.7c0.4,5.5,0.1,6.9-2.4,10.6
+       c-3.3,4.9-8.2,7.4-14.6,7.4h-4.4l2.1-2.8c2.7-3.3,4.8-9.7,4-11.7c-1.2-3.1-3.5-1.6-4.3,2.7c-0.9,5.8-6.2,11.8-10.5,11.8
+       c-2.8,0-3.1-0.3-2.4-2.5c2.1-6.7-0.6-8.2-3.9-1.9c-1.8,3.6-2.7,4.4-5.4,4.4c-2.1,0-3.8-0.9-4.9-2.7c-1.7-2.6-2.3-10.2-1-12.3
+       c0.3-0.6-0.1-1.4-1.1-1.8c-1.1-0.3-2.3,0-2.8,0.9c-1.3,2-1.2,9.9,0.1,13.2c0.9,2.4,0.8,2.8-1.1,2.8c-1.4,0-2.9-1.5-4.3-4.3
+       c-1.2-2.4-2.7-4.3-3.2-4.3c-1.9,0-2.3,2.3-0.8,5.3c1.4,2.9,1.4,3.2-0.3,3.6c-2.5,0.6-9.4-6.3-10.6-10.6C32.9,33.4,31.8,32,31,32
+       c-2.9,0-2.1,4.5,1.7,10.2l3.9,5.7l-2.3,2.4c-5.2,5.5-4.6,14.4,1.1,19.2c2.8,2.3,3.2,3.4,3.2,8c0,2.9,0.5,5.7,1.2,6.1
+       c0.6,0.3,2.5-0.5,4.1-2.1l2.9-2.8l2.8,2.8c3.5,3.6,5.2,2.6,5.2-3.3v-4.8l18-0.2c15.1-0.3,17.9-0.5,17.9-1.9s-2.8-1.6-17.9-1.9
+       l-18-0.2v-3.8v-3.8l18-0.2c15.1-0.3,17.9-0.5,17.9-1.9c0-1.4-3.5-1.6-25.8-1.6H39.1l-0.5,4.7c-0.4,3.8-0.8,4.4-1.7,3.2
+       c-2.3-2.8-2.8-6.4-1.4-9.7c2.4-5.9,4.7-6.3,32.3-6.3c22,0,25.5-0.3,29.3-2C114,39.9,113.3,15.8,96,7.7c-5.3-2.5-13.5-2.6-17.7-0.4
+       c-3,1.5-3.2,1.5-5.9-1.2C70.9,4.6,68,2.7,66,1.8C61.8,0.1,50.2-0.1,46.1,1.5z M50.7,66c1.1,9.9,0.5,12-2.3,9.2
+       c-1.1-1.1-1.8-1.1-3.4,0c-2,1.3-2.1,1-2.1-6.2v-7.5h3.6C50.1,61.5,50.3,61.7,50.7,66z&#34;/&gt;
+      &lt;/svg&gt;
+      &lt;/div&gt;
+    
+      &lt;!--step number m3 step details--&gt;
+      &lt;div class=&#34;step-container&#34;&gt;
+          &lt;div class=&#34;step-box&#34;&gt;Steps&lt;/div&gt;
+          &#34;&#34;&#34; + f&#39;&lt;div class=&#34;details-box&#34;&gt;{create_steps(recipe)}&lt;/div&gt;&#39; + &#34;&#34;&#34;
+      &lt;/div&gt;
+    
+    
+      &lt;div class=&#34;top&#34;&gt; &lt;!-- contains ingredients title --&gt;
+        &lt;div class=&#34;ingredients-box&#34;&gt;Ingredients&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&#34;step-container&#34;&gt; &lt;!-- contains ingredients-list w edit delete share copy buttons--&gt;
+        &lt;div class=&#34;details-box&#34;&gt; &lt;!--contains list w copy share buttons--&gt;
+          
+            &#34;&#34;&#34; + f&#34;{create_ingredients(recipe)}&#34; + &#34;&#34;&#34;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;  
+    &lt;/body&gt;
+    &lt;/html&gt;
+    &#34;&#34;&#34;
+    with open(&#39;open_recipe.html&#39;, &#39;w&#39;, encoding=&#39;utf-8&#39;) as file:
+        file.write(html_code)
+    webbrowser.open(&#39;open_recipe.html&#39;)</code></pre>
+</details>
+</dd>
+<dt id="displayer.create_ingredients"><code class="name flex">
+<span>def <span class="ident">create_ingredients</span></span>(<span>recipe)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="returns">Returns</h2>
+<ul>
+<li>(list) list of ingredients of the given recipe</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_ingredients(recipe):
+    &#39;&#39;&#39;
+    Returns:
+        - (list) list of ingredients of the given recipe
+    &#39;&#39;&#39;
+    result = &#39;&lt;ul&gt;&#39;
+    for ingredient in recipe[&#39;ingredients&#39;]:
+        result += f&#39;&lt;li&gt;{ingredient}&lt;/li&gt;&#39;
+    result += &#39;&lt;/ul&gt;&#39;
+    return result</code></pre>
+</details>
+</dd>
+<dt id="displayer.create_steps"><code class="name flex">
+<span>def <span class="ident">create_steps</span></span>(<span>recipe)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="returns">Returns</h2>
+<ul>
+<li>(list) list of steps of the given recipe</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_steps(recipe):
+    &#39;&#39;&#39;
+    Returns:
+        - (list) list of steps of the given recipe
+    &#39;&#39;&#39;
+    result = &#39;&lt;ol&gt;&#39;
+    for step in recipe[&#39;steps&#39;]:
+        result += f&#39;&lt;li&gt;{step}&lt;/li&gt;&#39;
+    result += &#39;&lt;/ol&gt;&#39;
+    return result</code></pre>
+</details>
+</dd>
+<dt id="displayer.display_recipe"><code class="name flex">
+<span>def <span class="ident">display_recipe</span></span>(<span>recipe: pandas.core.series.Series)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function displays a recipe as html page</p>
+<h2 id="args">Args</h2>
+<ul>
+<li>recipe (pandas.Series): recipe to be displayed to user</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def display_recipe(recipe: pd.Series):
+    &#39;&#39;&#39;
+    This function displays a recipe as html page
+    Args:
+        - recipe (pandas.Series): recipe to be displayed to user
+    &#39;&#39;&#39;
+    build_recipe_page(recipe)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+    <img src="../../recipes_logo.jpg" id="logo">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="displayer.build_recipe_page" href="#displayer.build_recipe_page">build_recipe_page</a></code></li>
+<li><code><a title="displayer.create_ingredients" href="#displayer.create_ingredients">create_ingredients</a></code></li>
+<li><code><a title="displayer.create_steps" href="#displayer.create_steps">create_steps</a></code></li>
+<li><code><a title="displayer.display_recipe" href="#displayer.display_recipe">display_recipe</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+<script>
+    // Get all elements with class "hljs-string" (assuming this class is used for strings inside the code block)
+    var strings = document.querySelectorAll('details pre code');
+
+    // Loop through each string element and increase its font size
+    strings.forEach(function(string) {
+        string.style.fontSize = '20px'; // Adjust the font size as needed
+    });
+</script>
+</body>
+</html>
