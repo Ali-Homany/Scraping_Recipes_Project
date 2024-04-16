@@ -11,15 +11,17 @@ OUTPUT_PATH = lambda i: f'logs/iteration_{i}.txt'
 DONE_PER_ITERATION = 10
 
 
-def display_progress(n, total):
+def display_progress(n, total, elapsed_time):
     '''
     This function calculates the percentage finished, and displays the progress of the process on the console
     Args:
         - n (int): number of finished items
         - total (int): number of total items to be done
+        - elapsed_time (int): duration of curr progress
     '''
     percentage = n/total * 100
-    msg = f'{percentage:.2f}% ({n} recipes out of {total}) scraped till now'
+    time_left = (100 - percentage) * elapsed_time/percentage
+    msg = f'{percentage:.2f}% ({n} recipes out of {total}) scraped till now in {elapsed_time/60:.2f} mins. Estimated {time_left/60:.2f} mins left'
     length = len(msg)
     sys.stdout.write('\b'*length + ' '*length + '\b'*length)
     sys.stdout.flush()
@@ -40,15 +42,18 @@ def find_total():
     return total
 
 
+start = time.time()
+accumulated_duration = 0
 total = find_total()
 num_finished = 0
 curr_finished = 0
 i = 0
 while num_finished < total or total == 0:
     # measure time consumed
-    start_time = time.time()
+    curr_start_time = time.time()
     result = subprocess.run(['python', SCRIPT_NAME], capture_output=True)
-    total_time = time.time() - start_time
+    curr_duration = time.time() - curr_start_time
+    accumulated_duration += curr_duration
 
     # save result state
     stdout_output = ''
@@ -65,14 +70,14 @@ while num_finished < total or total == 0:
     stdout_output += '\n'
 
     if result.returncode == 0:
-        stdout_output = f"Script executed successfully ({curr_finished} recipes) in {total_time:.2f} seconds.\n\n" + stdout_output
+        stdout_output = f"Script executed successfully ({curr_finished} recipes) in {curr_duration:.2f} seconds.\n\n" + stdout_output
     else:
-        stdout_output = f"Script encountered an error in {total_time:.2f} seconds.\n\n" + stdout_output
+        stdout_output = f"Script encountered an error in {curr_duration:.2f} seconds.\n\n" + stdout_output
 
     # if condition true, then recipes_links file didn't exist before, now it does
     if total <= 0:
         total += find_total() + num_finished
-    display_progress(num_finished, total=total)
+    display_progress(num_finished, total=total, elapsed_time=accumulated_duration)
 
     # write all output and error to log file
     if not os.path.exists('./logs'):
