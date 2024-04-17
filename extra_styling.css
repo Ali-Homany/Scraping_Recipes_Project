@@ -15,7 +15,6 @@ code.python {
 }
 #section-intro code.hljs {
     width: 65vw;
-    overflow-x: hidden;
 }
 code.python * {
     font-size: 20px !important;
