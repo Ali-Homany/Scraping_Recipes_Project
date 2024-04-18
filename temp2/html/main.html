@@ -21,6 +21,7 @@
 <article id="content">
 <header>
 <h1 class="title">Module <code>main</code></h1>
+<p>Main module is the social guy who interacts with the user, recieves his answers, & utilizes Displayer & Image_Processor modules to send responses back to him</p>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -148,7 +149,7 @@ if __name__ == &#39;__main__&#39;:
 </code></dt>
 <dd>
 <div class="desc"><h2 id="returns">Returns</h2>
-<p>(list[str]): list of unique ingredients names that the user have</p></div>
+<ul><li>(list[str]): list of unique ingredients names that the user have</li></ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -199,10 +200,11 @@ if __name__ == &#39;__main__&#39;:
 </code></dt>
 <dd>
 <div class="desc"><p>This function asks the user for a string
-Args
-- msg (str): question to be asked to user</p>
+<h2>Args</h2>
+<ul><li>msg (str): question to be asked to user</li></ul>
 <h2 id="returns">Returns</h2>
-<p>(str) user input</p></div>
+<ul><li>(str) user input</li></ul>
+</div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -232,9 +234,9 @@ Args
 <li>allow_any (bool): whether to add "any" choice or not</li>
 </ul>
 <h2 id="returns">Returns</h2>
-<p>(str): choice chosen by the user, None if the answer is any</p>
+<ul><li>(str): choice chosen by the user, None if the answer is any</li></ul>
 <h2 id="raises">Raises</h2>
-<p>RuntimeError when all_choices is empty</p></div>
+<ul><li>RuntimeError when all_choices is empty</li></ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -270,8 +272,12 @@ Args
 <span>def <span class="ident">isnumeric</span></span>(<span>s)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Args: s (str) string to be checked
-Returns: (bool) whether the given string is all numerical</p></div>
+<div class="desc">
+    <h2>Args:</h2>
+    <ul><li>s (str) string to be checked</li></ul>
+    <h2>Returns:</h2>
+    <ul><li>(bool) whether the given string is all numerical</li></ul>
+</div>
 <details class="source">
 <summary>
 <span>Expand source code</span>

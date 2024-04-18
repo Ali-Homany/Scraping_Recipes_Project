@@ -21,6 +21,7 @@
 <article id="content">
 <header>
 <h1 class="title">Module <code>suggestor</code></h1>
+<p>This module represents the 'mind' of this project. It is the one responsible for making the decision and choosing top recipes given user preferences</p>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -72,7 +73,14 @@ def suggest_recipes(df: pandas.DataFrame, cuisine, category, available_ingredien
 <span>def <span class="ident">count_common</span></span>(<span>ingredients, available_ingredients)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc">
+    <p>This function counts how many common ingredients exist between the 2 given lists</p>
+    <h2>Args:</h2>
+    <ul>
+        <li>ingredients (list): list of all ingredients in the dataset</li>
+        <li>available_ingredients (list): list of all ingredients the user have</li>
+    </ul>
+</div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -99,7 +107,7 @@ def suggest_recipes(df: pandas.DataFrame, cuisine, category, available_ingredien
 <li>n (int): number of recipes to be suggested, default 5</li>
 </ul>
 <h2 id="returns">Returns</h2>
-<p>(pandas.DataFrame) dataframe containing n recipes suitable suggestions</p></div>
+<ul><li>(pandas.DataFrame) dataframe containing n recipes suitable suggestions</li></ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>

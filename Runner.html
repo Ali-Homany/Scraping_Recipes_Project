@@ -21,6 +21,9 @@
 <article id="content">
 <header>
 <h1 class="title">Module <code>Runner</code></h1>
+<p>
+    Runner is a nice guy. It runs the Crawler until all recipes are scraped. For each run, it displays the current progress & saves any output/error to a log file
+</p>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -128,7 +131,9 @@ if __name__ == &#39;__main__&#39;:
 <span>def <span class="ident">OUTPUT_PATH</span></span>(<span>i)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc">
+    <p>This lambda function returns the valid log file path for the i-th iteration</p>
+</div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -174,7 +179,7 @@ if __name__ == &#39;__main__&#39;:
 </code></dt>
 <dd>
 <div class="desc"><h2 id="returns">Returns</h2>
-<p>total (int): total number of recipes that need to be scraped, 0 returned when an error occurs</p></div>
+<ul><li>total (int): total number of recipes that need to be scraped, 0 returned when an error occurs</li></ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>

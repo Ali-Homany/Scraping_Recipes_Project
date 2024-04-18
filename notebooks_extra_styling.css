@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&display=swap');
+
+* {
+    font-family: Solway;
+}
+pre {
+    font-size: 20px;
+    font-weight: 300;
+
+    line-height: 2em;
+    overflow-x: auto;
+}

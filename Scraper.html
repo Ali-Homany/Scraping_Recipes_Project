@@ -21,6 +21,9 @@
 <article id="content">
 <header>
 <h1 class="title">Module <code>Scraper</code></h1>
+<p>
+    This module offers all needed methods to scrape all needed information from a given recipe page soup
+</p>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -135,6 +138,40 @@ def get_image_link(soup):
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
+<dt id="Scraper.scrape_recipe_page"><code class="name flex">
+    <span>def <span class="ident">scrape_recipe_page</span></span>(<span>soup)</span>
+    </code></dt>
+    <dd>
+    <div class="desc"><h2 id="args">Args</h2>
+    <ul><li>soup (BeautifulSoup): contains html code of the recipe page to be scraped</li></ul>
+    <h2 id="returns">Returns</h2>
+    <ul><li>(list): all details about the recipe</li></ul></div>
+    <details class="source">
+    <summary>
+    <span>Expand source code</span>
+    </summary>
+    <pre><code class="python">def scrape_recipe_page(soup):
+        &#39;&#39;&#39;
+        Args:
+            soup (BeautifulSoup): contains html code of the recipe page to be scraped
+        Returns:
+            (list): all details about the recipe
+        &#39;&#39;&#39;
+        title = get_title(soup)
+        if soup.find(&#39;header&#39;, class_=&#39;tasty-recipes-entry-header&#39;) is None or title is None or &#39;freezer&#39; in title.lower() or &#39;instant&#39; in title.lower():
+            raise ValueError(&#39;This is not a recipe page, I cannot scrape it&#39;)
+        category = get_category(soup)
+        cuisine = get_cuisine(soup)
+        total_time = get_total_time(soup)
+        nbr_of_ser = get_nbr_of_servings(soup)
+        steps = get_steps(soup)
+        rating = get_rating(soup)
+        ingredients = get_ingredients(soup)
+        image_link = get_image_link(soup)
+        list_all_type = [title, category, cuisine, total_time, nbr_of_ser, steps, rating, ingredients, image_link]
+        return list_all_type</code></pre>
+    </details>
+</dd>        
 <dt id="Scraper.get_category"><code class="name flex">
 <span>def <span class="ident">get_category</span></span>(<span>soup)</span>
 </code></dt>
@@ -289,43 +326,6 @@ def get_image_link(soup):
     li_time=soup.find(&#39;span&#39;, class_=&#39;tasty-recipes-total-time&#39;)
     total_time=li_time.text.strip()
     return total_time</code></pre>
-</details>
-</dd>
-<dt id="Scraper.scrape_recipe_page"><code class="name flex">
-<span>def <span class="ident">scrape_recipe_page</span></span>(<span>soup)</span>
-</code></dt>
-<dd>
-<div class="desc"><h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>soup</code></strong> :&ensp;<code>BeautifulSoup</code></dt>
-<dd>contains html code of the recipe page to be scraped</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>(list): all details about the recipe</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def scrape_recipe_page(soup):
-    &#39;&#39;&#39;
-    Args:
-        soup (BeautifulSoup): contains html code of the recipe page to be scraped
-    Returns:
-        (list): all details about the recipe
-    &#39;&#39;&#39;
-    title = get_title(soup)
-    if soup.find(&#39;header&#39;, class_=&#39;tasty-recipes-entry-header&#39;) is None or title is None or &#39;freezer&#39; in title.lower() or &#39;instant&#39; in title.lower():
-        raise ValueError(&#39;This is not a recipe page, I cannot scrape it&#39;)
-    category = get_category(soup)
-    cuisine = get_cuisine(soup)
-    total_time = get_total_time(soup)
-    nbr_of_ser = get_nbr_of_servings(soup)
-    steps = get_steps(soup)
-    rating = get_rating(soup)
-    ingredients = get_ingredients(soup)
-    image_link = get_image_link(soup)
-    list_all_type = [title, category, cuisine, total_time, nbr_of_ser, steps, rating, ingredients, image_link]
-    return list_all_type</code></pre>
 </details>
 </dd>
 </dl>
