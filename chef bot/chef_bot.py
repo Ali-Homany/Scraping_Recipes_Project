@@ -1,4 +1,5 @@
 import os
+import dotenv
 import time
 import schedule
 import threading
@@ -6,9 +7,10 @@ import telebot
 from helper import MSGS, PATHS, get_ith_recipe_message
 
 
+os.load_env()
 class ChefBot:
     def __init__(self):
-        KEY = '7082579528:AAFtZCQeX-6x3x7N-0SnqPm_RDXD6XudKks'
+        KEY = os.getenv('TOKEN')
         self.bot = telebot.TeleBot(KEY)
 
         @self.bot.message_handler(commands=['help', 'start'])
@@ -81,6 +83,6 @@ class ChefBot:
             time.sleep(10)
 
     def run(self):
-        daily_recipe_thread = threading.Thread(target=self.schedule_daily_message)
+        daily_recipe_thread = threading.Thread(target=self.schedule_daily_message, daemon=True)
         daily_recipe_thread.start()
         self.bot.polling()

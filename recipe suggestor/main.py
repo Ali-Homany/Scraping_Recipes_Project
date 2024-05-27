@@ -84,7 +84,7 @@ def get_available_ingredients_from_user():
 if __name__ == '__main__':
     try:
         warnings.filterwarnings('ignore')
-        df = pandas.read_json('./cleaned_data.json')
+        df = pandas.read_json('../cleaning&analysis/cleaned_data.json')
 
         available_categories = df['category'].unique()
         chosen_category = get_user_choice('category', available_categories)
