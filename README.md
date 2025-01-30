@@ -36,13 +36,19 @@ Then it:
 - Displayer: Responsible for presenting the recipe visually, as an html page
 - Suggestor: Represents the 'mind' of this project. It is the one responsible for making the decision and choosing top recipes given user preferences
 
+
+## Demo:
+
+![Chef Bot Demo](./assets/chef_bot_video.gif)
+![Recipe Suggestor Demo](./assets/recipe_suggestor_video.gif)
+
 ## Usage:
 For the telegram bot part, you can simply chat with it [here](https://t.me/Everday_Recipe_Bot)
 
 To use the recipe suggestor, it needs a little more patience:
 
 - Download [Python](https://www.python.org/downloads/)
-- Download [the project](https://github.com/homanydata/Scraping_Recipes_Project/archive/refs/heads/main.zip)
+- Download [the project](https://github.com/ali-homany/Scraping_Recipes_Project/archive/refs/heads/main.zip)
 - Open the command line in the project folder then install required libraries:
    ```sh
    pip install -r requirements.txt
@@ -53,4 +59,4 @@ To use the recipe suggestor, it needs a little more patience:
 Hope you like the taste :)
 
 ## Documentation
-For further details, the project is well documented [here](https://homanydata.github.io/Scraping_Recipes_Project/), which is created using pydoc + some additional styling. HTML/CSS code of the documentation is inside [docs branch](https://github.com/homanydata/Scraping_Recipes_Project/tree/docs)
+For further details, the project is well documented [here](https://ali-homany.github.io/Scraping_Recipes_Project/), which is created using pydoc + some additional styling. HTML/CSS code of the documentation is inside [docs branch](https://github.com/ali-homany/Scraping_Recipes_Project/tree/docs)
